@@ -48,6 +48,8 @@ def create_barcode(args, parser):
         )
     if args.type != 'SVG':
         opts = {'format': args.type}
+        if args.module_width:
+            opts['module_width'] = args.module_width/100.0
         writer = ImageWriter()
     else:
         opts = {'compress': args.compress}
@@ -105,6 +107,10 @@ def main():
         '--text', help='Text to show under the '
         'barcode.'
     )
+    create_parser.add_argument(
+        '--module_width', help='Unit size for the barcode.',
+        type=float
+    )
     if ImageWriter is not None:
         create_parser.add_argument(
             '-t', '--type', help='Type of output '
@@ -122,10 +128,10 @@ def main():
         )
         gui_parser.set_defaults(func=open_gui)
     create_parser.set_defaults(
-        type='svg',
+        type='png',
         compress=False,
         func=create_barcode,
-        barcode='code39',
+        barcode='upca',
         text=None
     )
     args = parser.parse_args()

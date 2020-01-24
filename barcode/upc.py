@@ -29,7 +29,7 @@ class UniversalProductCodeA(Barcode):
 
     digits = 11
 
-    def __init__(self, upc, writer=None, make_ean=False):
+    def __init__(self, upc, writer=None, make_ean=False, *args, **kwds):
         self.ean = make_ean
         upc = upc[:self.digits]
         if not upc.isdigit():
