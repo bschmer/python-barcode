@@ -1,0 +1,6 @@
+Generate images with something like this:
+
+for index in {000001..000040}; do for range in 020 030 040 050 060 070 080 090 100 110 120 130 140 150; do python-barcode create "40${index}${range}" outfile_${index}_${range} --module_width ${range}; done; done
+
+Then run tile.py to generate the sheets to be printed.
+
